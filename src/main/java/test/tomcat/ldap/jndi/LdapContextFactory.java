@@ -57,6 +57,8 @@ public class LdapContextFactory implements ObjectFactory {
 
 			String content = (String) address.getContent();
 
+			LOGGER.info("type: " + type + "content: " + content);
+
 			switch (type) {
 
 				case Context.PROVIDER_URL:
