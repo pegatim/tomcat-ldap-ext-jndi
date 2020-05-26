@@ -18,7 +18,7 @@ Example Tomcat resource:
 	<Resource name="ldapConnection" 
 	        auth="Container"
 	        type="javax.naming.ldap.LdapContext"
-	        factory="com.sample.custom.LdapContextFactory"
+	        factory="test.tomcat.ldap.jndi.LdapContextFactory"
 	        singleton="false"
 	        java.naming.referral="follow"
 	        java.naming.factory.initial="com.sun.jndi.ldap.LdapCtxFactory"
