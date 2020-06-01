@@ -29,30 +29,30 @@ public class LdapContextFactory implements ObjectFactory {
 
       while (references.hasMoreElements()) {
 
-          RefAddr address = references.nextElement();
+        RefAddr address = references.nextElement();
 
-          String type = address.getType();
+        String type = address.getType();
 
-          String content = (String) address.getContent();
+        String content = (String) address.getContent();
 
-          if (type.equals("providerLookup")) {
+        if (type.equals("providerLookup")) {
 
-            providerLookup = content; 
+          providerLookup = content; 
 
-            LOGGER.info("setting providerLookup " + content);
+          LOGGER.info("setting providerLookup " + content);
 
-          } 
+        } 
 
-          //LOGGER.info("type: " + type + " content: " + content);
+        //LOGGER.info("type: " + type + " content: " + content);
 
-          env.put(type, content);
+        env.put(type, content);
       }
 
       InitialLdapContext ctx = new InitialLdapContext(env, null);
 
-		  Object LdapFactoryobj = (Object) ctx.lookup(providerLookup);
-	   
-	    //LOGGER.info("Object: " + LdapFactoryobj);
+      Object LdapFactoryobj = (Object) ctx.lookup(providerLookup);
+
+      //LOGGER.info("Object: " + LdapFactoryobj);
       LOGGER.info("ending custom LDAP external JNDI");  
 
       return LdapFactoryobj;
