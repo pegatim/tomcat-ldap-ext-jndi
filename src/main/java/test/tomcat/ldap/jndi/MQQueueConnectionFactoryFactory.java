@@ -31,6 +31,8 @@ public class MQQueueConnectionFactoryFactory implements ObjectFactory {
 
             String content = (String) address.getContent();
 
+            LOGGER.info("type: " + type + " content: " + content);
+
             env.put(type, content);
         }
 
