@@ -10,9 +10,9 @@ import java.util.Hashtable;
 import java.util.Enumeration;
 import java.util.logging.Logger;
 
-public class LdapCtxMQFactory implements ObjectFactory {
+public class LdapContextFactory implements ObjectFactory {
 
-	private static final Logger LOGGER = Logger.getLogger( LdapCtxMQFactory.class.getName() );
+	private static final Logger LOGGER = Logger.getLogger( LdapContextFactory.class.getName() );
 
     public Object getObjectInstance(Object obj, Name name, Context nameCtx, Hashtable<?, ?> environment)
         throws Exception {
@@ -48,11 +48,11 @@ public class LdapCtxMQFactory implements ObjectFactory {
 
         InitialLdapContext ctx = new InitialLdapContext(env, null);
   
-  		Object MQobj = (Object) ctx.lookup(providerLookup);
+  		  Object LdapFactoryobj = (Object) ctx.lookup(providerLookup);
   	   
-  	    LOGGER.info("Object: " + MQobj);
+  	    LOGGER.info("Object: " + LdapFactoryobj);
 
-        return MQobj;
+        return LdapFactoryobj;
 
     }
 
