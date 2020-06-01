@@ -14,46 +14,49 @@ public class LdapContextFactory implements ObjectFactory {
 
 	private static final Logger LOGGER = Logger.getLogger( LdapContextFactory.class.getName() );
 
-    public Object getObjectInstance(Object obj, Name name, Context nameCtx, Hashtable<?, ?> environment)
-        throws Exception {
+  public Object getObjectInstance(Object obj, Name name, Context nameCtx, Hashtable<?, ?> environment)
+      throws Exception {
 
-        Hashtable<Object, Object> env = new Hashtable<>();
+      LOGGER.info("starting custom LDAP external JNDI");    
 
-        Reference reference = (Reference) obj;
+      Hashtable<Object, Object> env = new Hashtable<>();
 
-        Enumeration<RefAddr> references = reference.getAll();
+      Reference reference = (Reference) obj;
 
-        String providerLookup = null;
+      Enumeration<RefAddr> references = reference.getAll();
 
-        while (references.hasMoreElements()) {
+      String providerLookup = null;
 
-            RefAddr address = references.nextElement();
+      while (references.hasMoreElements()) {
 
-            String type = address.getType();
+          RefAddr address = references.nextElement();
 
-            String content = (String) address.getContent();
+          String type = address.getType();
 
-            if (type.equals("providerLookup")) {
+          String content = (String) address.getContent();
 
-              providerLookup = content; 
+          if (type.equals("providerLookup")) {
 
-              LOGGER.info("Set providerLookup " + content);
+            providerLookup = content; 
 
-            } 
+            LOGGER.info("setting providerLookup " + content);
 
-            LOGGER.info("type: " + type + " content: " + content);
+          } 
 
-            env.put(type, content);
-        }
+          //LOGGER.info("type: " + type + " content: " + content);
 
-        InitialLdapContext ctx = new InitialLdapContext(env, null);
-  
-  		  Object LdapFactoryobj = (Object) ctx.lookup(providerLookup);
-  	   
-  	    LOGGER.info("Object: " + LdapFactoryobj);
+          env.put(type, content);
+      }
 
-        return LdapFactoryobj;
+      InitialLdapContext ctx = new InitialLdapContext(env, null);
 
-    }
+		  Object LdapFactoryobj = (Object) ctx.lookup(providerLookup);
+	   
+	    //LOGGER.info("Object: " + LdapFactoryobj);
+      LOGGER.info("ending custom LDAP external JNDI");  
+
+      return LdapFactoryobj;
+
+  }
 
 }
