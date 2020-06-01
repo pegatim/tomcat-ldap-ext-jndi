@@ -12,7 +12,7 @@ import java.util.logging.Logger;
 
 public class LdapCtxMQFactory implements ObjectFactory {
 
-	private static final Logger LOGGER = Logger.getLogger( LdapContextFactory.class.getName() );
+	private static final Logger LOGGER = Logger.getLogger( LdapCtxMQFactory.class.getName() );
 
     public Object getObjectInstance(Object obj, Name name, Context nameCtx, Hashtable<?, ?> environment)
         throws Exception {
@@ -33,13 +33,13 @@ public class LdapCtxMQFactory implements ObjectFactory {
 
             String content = (String) address.getContent();
 
-            if (type == Context.PROVIDER_LOOKUP) {
+            if (type.equals("providerLookup")) {
 
-            	providerLookup = content; 
+              providerLookup = content; 
 
-            	LOGGER.info("Set providerLookup " + content);
+              LOGGER.info("Set providerLookup " + content);
 
-            }
+            } 
 
             LOGGER.info("type: " + type + " content: " + content);
 
