@@ -12,7 +12,7 @@ import java.util.logging.Logger;
 
 public class LdapContextFactory implements ObjectFactory {
 
-	private static final Logger LOGGER = Logger.getLogger( LdapContextFactory.class.getName() );
+  private static final Logger LOGGER = Logger.getLogger( LdapContextFactory.class.getName() );
 
   public Object getObjectInstance(Object obj, Name name, Context nameCtx, Hashtable<?, ?> environment)
       throws Exception {
