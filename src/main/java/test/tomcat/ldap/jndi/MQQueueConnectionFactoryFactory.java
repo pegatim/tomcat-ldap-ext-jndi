@@ -5,7 +5,6 @@ import javax.naming.RefAddr;
 import javax.naming.Name;
 import javax.naming.Context;
 import javax.naming.Reference;
-import javax.naming.ldap.LdapContext;
 import javax.naming.ldap.InitialLdapContext;
 import java.util.Hashtable;
 import java.util.Enumeration;
@@ -35,13 +34,13 @@ public class MQQueueConnectionFactoryFactory implements ObjectFactory {
             env.put(type, content);
         }
 
-        LdapContext ctx = new javax.naming.directory.InitialLdapContext(env, null);
+        InitialLdapContext ctx = new InitialLdapContext(env, null);
   
-  		Object obj = (Object) ctx.lookup("cn=myq,dc=example,dc=org");
+  		Object MQobj = (Object) ctx.lookup("cn=myq,dc=example,dc=org");
   	   
-  	    oLog.infoForced(String.format("Object: %s", obj));
+  	    LOGGER.info("Object: " + MQobj);
 
-        return new InitialLdapContext(env, null);
+        return MQobj;
 
     }
 
